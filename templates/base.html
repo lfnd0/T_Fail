@@ -10,10 +10,15 @@
     <header>
         <h1>Texley</h1>
         <a href="{% url 'home' %}">Home</a> /
-        <a href="{% url 'signup' %}">Cadastrar-se</a> /
-        <a href="{% url 'login' %}">Entrar</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Sair</a> /
+            <strong>Sessão ativa com {{ user.username }}</strong>
+        {% else %}
+            <a href="{% url 'signup' %}">Cadastrar-se</a> /
+            <a href="{% url 'login' %}">Entrar</a>
+        {% endif %}
+        <hr>
     </header>
-    <hr>
     {% block content %}
     {% endblock %}
 </body>

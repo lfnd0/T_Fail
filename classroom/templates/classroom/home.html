@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Bem vind@ ao Texley!</h2>
+<h1>Home</h1>
+    <h2>Bem vind@ ao Texley, {% if user.is_authenticated %}{{user.username}}{% else %}visitante{% endif %}!</h2>
 {% endblock %}
