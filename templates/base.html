@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Texley{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Texley</h1>
+        <a href="{% url 'home' %}">Home</a> |
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Sair</a> |
+            <strong>Sessão ativa com {{ user.username }}</strong>
+        {% else %}
+            <a href="{% url 'signup' %}">Cadastrar-se</a> |
+            <a href="{% url 'login' %}">Entrar</a>
+        {% endif %}
+        <hr>
+    </header>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

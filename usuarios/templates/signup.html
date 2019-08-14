@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Cadastra-se</h2>
+    <p>Selecione o tipo de conta</p>
+    <button><a href="{% url 'estudante_signup' %}">Estudante</a></button><br><br>
+    <button><a href="{% url 'professor_signup' %}">Professor</a></button>
+{% endblock %}
