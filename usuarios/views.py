@@ -6,15 +6,20 @@ from .models import User
 from .forms import EstudanteSignUpForm, ProfessorSignUpForm
 
 def home(request):
-    return render(request, 'home.html')
+    if request.user.is_authenticated:
+        if request.user.is_professor:
+            return redirect('listagem_turmas')
+        else:
+            return render(request, 'usuarios/home.html')
+    return render(request, 'usuarios/home.html')
 
 class SignUpView(TemplateView):
-    template_name = 'signup.html'
+    template_name = 'usuarios/signup.html'
 
 class EstudanteSignUpView(CreateView):
     model = User
     form_class = EstudanteSignUpForm
-    template_name = 'signup_form.html'
+    template_name = 'usuarios/signup_form.html'
 
     def get_context_data(self, **kwargs):
         kwargs['user_type'] = 'estudante'
@@ -28,7 +33,7 @@ class EstudanteSignUpView(CreateView):
 class ProfessorSignUpView(CreateView):
     model = User
     form_class = ProfessorSignUpForm
-    template_name = 'signup_form.html'
+    template_name = 'usuarios/signup_form.html'
 
     def get_context_data(self, **kwargs):
         kwargs['user_type'] = 'professor'
@@ -37,4 +42,4 @@ class ProfessorSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('home')
+        return redirect('listagem_turmas')
