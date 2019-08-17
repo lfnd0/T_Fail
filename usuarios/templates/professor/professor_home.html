@@ -5,6 +5,10 @@
         <ul>
             {% for turma in turmas.all %}
                 <li>{{ turma.nome }}</li>
+            {% empty %}
+                <tr>
+                    <td>Você não possui turmas criadas.</td>
+                </tr>
             {% endfor %}
         </ul>
     <button>
