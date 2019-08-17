@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Turmas</h2>
+        <ul>
+            {% for turma in turmas.all %}
+                <li>{{ turma.nome }}</li>
+            {% endfor %}
+        </ul>
+    <button>
+        <a href="{% url 'criar_turma' %}">Criar turma</a>
+    </button>
+{% endblock %}

@@ -4,4 +4,4 @@ from .models import Turma
 class TurmaForm(ModelForm):
     class Meta:
         model = Turma
-        fields = ['nome']
+        fields = ['nome', 'professor']

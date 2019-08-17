@@ -1,18 +1,26 @@
 from django.shortcuts import redirect, render
 from .models import Turma
-from .forms import TurmaForm
 
-def listar_turmas(request):
-    data = {}
-    data['turmas'] = Turma.objects.all()
-    return render(request, 'professor/listagem_turmas.html', data)
+from django.views.generic import CreateView, ListView
 
-def criar_nova_turma(request):
-    data = {}
-    form = TurmaForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect('listagem_turmas')
 
-    data['form'] = form
-    return render(request,'professor/form.html', data)
+class TurmaListView(ListView):
+    model = Turma
+    ordering = ('name', )
+    context_object_name = 'turmas'
+    template_name = 'professor/professor_home.html'
+
+    def get_queryset(self):
+        queryset = self.request.user.turmas
+        return queryset
+
+class TurmaCreateView(CreateView):
+    model = Turma
+    fields = ('nome', )
+    template_name = 'professor/criar_turma.html'
+
+    def form_valid(self, form):
+        turma = form.save(commit=False)
+        turma.professor = self.request.user
+        turma.save()
+        return redirect('professor_home')

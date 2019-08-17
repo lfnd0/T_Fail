@@ -8,7 +8,7 @@ from .forms import EstudanteSignUpForm, ProfessorSignUpForm
 def home(request):
     if request.user.is_authenticated:
         if request.user.is_professor:
-            return redirect('listagem_turmas')
+            return redirect('professor_home')
         else:
             return render(request, 'usuarios/home.html')
     return render(request, 'usuarios/home.html')
@@ -42,4 +42,4 @@ class ProfessorSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('listagem_turmas')
+        return redirect('professor_home')
