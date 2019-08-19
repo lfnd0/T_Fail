@@ -5,7 +5,7 @@ from usuarios import views
 from turmas import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', include('usuarios.urls')),
-    path('turmas', include('turmas.urls'))
+    path('admin/', admin.site.urls),
+    path('turmas/', include('turmas.urls'))
 ]

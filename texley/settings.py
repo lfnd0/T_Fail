@@ -125,7 +125,7 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'usuarios.User'
 
-LOGIN_URL = 'login'
+LOGIN_URL = 'usuarios/login'
 
 LOGIN_REDIRECT_URL = 'home'
 
