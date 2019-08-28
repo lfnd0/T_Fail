@@ -1,10 +1,12 @@
 from django.shortcuts import redirect, render
-from .models import Turma
+from ..models import Turma
 
 from django.views.generic import CreateView, ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .decorators import professor_required
+from django.db.models import Count
+
+from ..decorators import professor_required
 
 @method_decorator([login_required, professor_required], name='dispatch')
 class TurmaListView(ListView):
@@ -20,7 +22,7 @@ class TurmaListView(ListView):
 @method_decorator([login_required, professor_required], name='dispatch')
 class TurmaCreateView(CreateView):
     model = Turma
-    fields = ('nome', )
+    fields = ('nome')
     template_name = 'professor/adicionar_turma.html'
 
     def form_valid(self, form):
