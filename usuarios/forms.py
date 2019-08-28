@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 
-from .models import User
+from .models import User, Estudante, Professor
 
 class ProfessorSignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=60, help_text='Obrigatório. 60 caracteres ou menos.')
@@ -15,8 +15,8 @@ class ProfessorSignUpForm(UserCreationForm):
     def save(self, commit= True):
         user = super().save(commit=False)
         user.is_professor = True
-        if commit:
-            user.save()
+        user.save()
+        professor = Professor.objects.create(user=user)
         return user
 
 class EstudanteSignUpForm(UserCreationForm):
@@ -30,6 +30,6 @@ class EstudanteSignUpForm(UserCreationForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         user.is_estudante = True
-        if commit:
-            user.save()
+        user.save()
+        estudante = Estudante.objects.create(user=user)
         return user
