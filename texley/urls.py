@@ -1,11 +1,14 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from usuarios import views
-from turmas import views
+from usuarios.views import usuarios, estudantes, professores
 
 urlpatterns = [
-    path('', include('usuarios.urls')),
     path('admin/', admin.site.urls),
-    path('turmas/', include('turmas.urls'))
+
+    path('', include('usuarios.urls')),
+    path('usuarios/', include('django.contrib.auth.urls')),
+    path('usuarios/signup/', usuarios.SignUpView.as_view(), name='signup'),
+    path('usuarios/signup/estudante/', estudantes.EstudanteSignUpView.as_view(), name='estudante_signup'),
+    path('usuarios/signup/professor/', professores.ProfessorSignUpView.as_view(), name='professor_signup')
 ]
