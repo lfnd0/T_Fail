@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'usuarios',
     'turmas'
 ]
 
@@ -123,7 +122,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-AUTH_USER_MODEL = 'usuarios.User'
+AUTH_USER_MODEL = 'turmas.User'
 
 LOGIN_URL = 'login'
 
