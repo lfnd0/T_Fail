@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Criar turma</h2>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Criar turma</button>
+    </form>
+{% endblock %}
