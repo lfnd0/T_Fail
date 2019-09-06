@@ -1,8 +1,9 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import login
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.urls import reverse
 
 from ..models import User, Turma
 from ..forms import ProfessorSignUpForm
@@ -37,10 +38,23 @@ class TurmaListView(ListView):
 class TurmaCreateView(CreateView):
     model = Turma
     fields = ('nome', )
-    template_name = 'usuario/professores/adicionar_turma.html'
+    template_name = 'usuario/professores/adicionar_turma_form.html'
 
     def form_valid(self, form):
         turma = form.save(commit=False)
         turma.professor = self.request.user.professor
         turma.save()
         return redirect('professores:listar_turmas')
+
+@method_decorator([login_required, professor_required], name='dispatch')
+class TurmaUpdateView(UpdateView):
+    model = Turma
+    fields = ('nome', )
+    context_object_name = 'turma'
+    template_name = 'usuario/professores/atualizar_turma_form.html'
+
+    def get_queryset(self):
+        return self.request.user.professor.turmas.all()
+    
+    def get_success_url(self):
+        return reverse('professores:listar_turmas')
