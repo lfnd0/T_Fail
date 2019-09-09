@@ -8,13 +8,4 @@
             <button type="submit">Atualizar</button><br><br>
         </form>
         <a href="{% url 'professores:listar_turmas' %}"><button>Cancelar</button></a>
-    <h3>Estudantes na turma</h3>
-        {% for matricula in matriculas %}
-            <ul>
-                <li>{{ matricula }}</li>
-            </ul>
-        {% empty %}
-            <p>Turma sem estudantes.</p>
-        {% endfor %}
-            <a href="{% url 'professores:adicionar_estudante' turma.pk %}">Adicionar estudantes</a> 
 {% endblock %}

@@ -1,8 +1,8 @@
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from django.contrib.auth import login
 from django.shortcuts import redirect
 
-from ..models import User
+from ..models import User, Estudante, Turma
 from ..forms import EstudanteSignUpForm
 
 class EstudanteSignUpView(CreateView):
@@ -18,3 +18,14 @@ class EstudanteSignUpView(CreateView):
         user = form.save()
         login(self.request, user)
         return redirect('home')
+    
+class TurmaListView(ListView):
+    model = Turma
+    ordering = ('nome', )
+    context_object_name = 'turmas'
+    template_name = 'usuario/estudantes/listar_turmas_estudante.html'
+
+    def get_queryset(self):
+        estudante = self.request.user.estudante.turmas
+        queryset = Turma.objects.filter(estudantes)
+        return queryset

@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 
-from .models import User, Estudante, Professor, Turma, Matricula
+from .models import User, Estudante, Professor, Turma
 
 class ProfessorSignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=60, help_text='Obrigatório. 60 caracteres ou menos.')
@@ -24,7 +24,7 @@ class EstudanteSignUpForm(UserCreationForm):
     
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ("email", "username", "password1", "password2")
+        fields = ('email', 'username', 'password1', 'password2')
         
     @transaction.atomic
     def save(self, commit=True):
@@ -37,14 +37,4 @@ class EstudanteSignUpForm(UserCreationForm):
 class TurmaForm(forms.ModelForm):
     class Meta:
         model = Turma
-        fields = ('nome', 'professor')
-
-class MatriculaForm(forms.ModelForm):
-    estudantes = forms.ModelMultipleChoiceField(
-        queryset=Estudante.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-        required=True
-    )
-    class Meta:
-        model = Matricula
-        fields = ('estudantes', )
+        fields = ('nome', 'professor', 'estudantes')

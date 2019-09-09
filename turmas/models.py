@@ -7,7 +7,7 @@ class User(AbstractUser):
     is_professor = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS =['username']
+    REQUIRED_FIELDS = ['username']
 
     def __str__(self):
         return self.username
@@ -26,11 +26,8 @@ class Professor(models.Model):
 
 class Turma(models.Model):
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE, related_name='turmas')
+    estudantes = models.ManyToManyField(Estudante, null=True, blank=True)
     nome = models.CharField(max_length=100)
     
     def __str__(self):
         return self.nome
-
-class Matricula(models.Model):
-    turma = models.ForeignKey(Turma, on_delete=models.CASCADE, related_name='matriculas')
-    estudantes = models.ManyToManyField(Estudante)
