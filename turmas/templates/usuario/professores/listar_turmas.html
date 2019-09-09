@@ -6,12 +6,14 @@
     <thead>
         <tr>
             <th>Turma</th>
+            <th>Estudantes</th>
         </tr>
     </thead>
     <tbody>
         {% for turma in turmas.all %}
             <tr>
                 <td><a href="{% url 'professores:atualizar_turma' turma.pk %}">{{ turma.nome }}</a></td>
+                <td>{{ turma.qtd_matriculas }}</td>
             </tr>
         {% empty %}
             <tr>

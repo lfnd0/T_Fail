@@ -30,3 +30,7 @@ class Turma(models.Model):
     
     def __str__(self):
         return self.nome
+
+class Matricula(models.Model):
+    turma = models.ForeignKey(Turma, on_delete=models.CASCADE, related_name='matriculas')
+    estudantes = models.ManyToManyField(Estudante)
