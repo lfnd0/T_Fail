@@ -10,7 +10,7 @@ urlpatterns = [
     ], 'usuario'), namespace='estudantes')),
 
     path('professores/', include(([
-        path('', professores.TurmaListView.as_view(), name='listar_turmas'),
+        path('', professores.TurmaListView.as_view(), name='listar_turmas_professor'),
         path('turma/adicionar/', professores.TurmaCreateView.as_view(), name='adicionar_turma'),
         path('turma/<int:pk>/', professores.TurmaUpdateView.as_view(), name='atualizar_turma')
     ], 'usuario'), namespace='professores'))
