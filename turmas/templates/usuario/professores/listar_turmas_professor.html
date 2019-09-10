@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Minhas turmas</h2>
+<table>
+    {% for turma in turmas.all %}
+    <thead>
+        <tr>
+            <th>Turma</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a href="{% url 'professores:atualizar_turma' turma.pk %}">{{ turma.nome }}</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td>Você não possui turmas criadas.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<button>
+    <a href="{% url 'professores:adicionar_turma' %}">Criar turma</a>
+</button>
+{% endblock %}
