@@ -26,6 +26,6 @@ class TurmaListView(ListView):
     template_name = 'usuario/estudantes/listar_turmas_estudante.html'
 
     def get_queryset(self):
-        estudante = self.request.user.estudante.turmas
-        queryset = Turma.objects.filter(estudantes)
+        estudante = self.request.user.username
+        queryset = Turma.objects.filter(estudantes__in=estudante)
         return queryset
