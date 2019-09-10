@@ -7,7 +7,7 @@ class SignUpView(TemplateView):
 def home(request):
     if request.user.is_authenticated:
         if request.user.is_professor:
-            return redirect('professores:listar_turmas_professor')
+            return redirect('professores:listar_turmas')
         else:
             return redirect('estudantes:listar_turmas_estudante')
     return render(request, 'usuario/home.html')

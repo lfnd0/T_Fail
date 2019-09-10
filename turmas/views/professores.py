@@ -22,14 +22,14 @@ class ProfessorSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('professores:listar_turmas_professor')
+        return redirect('professores:listar_turmas')
 
 @method_decorator([login_required, professor_required], name='dispatch')
 class TurmaListView(ListView):
     model = Turma
     ordering = ('nome', )
     context_object_name = 'turmas'
-    template_name = 'usuario/professores/listar_turmas_professor.html'
+    template_name = 'usuario/professores/listar_turmas.html'
 
     def get_queryset(self):
         queryset = self.request.user.professor.turmas
@@ -45,7 +45,7 @@ class TurmaCreateView(CreateView):
         turma = form.save(commit=False)
         turma.professor = self.request.user.professor
         turma.save()
-        return redirect('professores:listar_turmas_professor')
+        return redirect('professores:listar_turmas')
 
 @method_decorator([login_required, professor_required], name='dispatch')
 class TurmaUpdateView(UpdateView):
@@ -58,4 +58,4 @@ class TurmaUpdateView(UpdateView):
         return self.request.user.professor.turmas.all()
     
     def get_success_url(self):
-        return reverse('professores:listar_turmas_professor')
+        return reverse('professores:listar_turmas')
