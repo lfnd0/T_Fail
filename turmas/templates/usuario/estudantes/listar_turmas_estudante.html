@@ -2,13 +2,11 @@
 {% block content %}
 <h2>Minhas turmas</h2>
 <table>
-    {% for turma in turmas %}
     <thead>
-        <tr>
-            <th>Turma</th>
-            <th>Professor</th>
-        </tr>
+        <th>Turma</th>
+        <th>Professor</th>
     </thead>
+    {% for turma in turmas %}
     <tbody>
         <tr>
             <td>{{ turma.nome }}</td>
