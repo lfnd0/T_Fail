@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <h2>Minhas turmas</h2>
 <table>
+    {% for turma in turmas %}
     <thead>
-        <th>Turma</th>
-        <th>Professor</th>
+        <tr>
+            <th>Turma</th>
+            <th>Professor</th>
+        </tr>
     </thead>
     <tbody>
-        {% for turma in turmas %}
         <tr>
             <td>{{ turma.nome }}</td>
             <td>{{ turma.professor }}</td>
         </tr>
-        {% empty %}
-        <tr>
-            <td>Você não participa de nenhuma turma.</td>
-        </tr>
-        {% endfor %}
+    {% empty %}
+    <tr>
+        <td>Você não participa de nenhuma turma.</td>
+    </tr>
+    {% endfor %}
     </tbody>
 </table>
 {% endblock %}
