@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Minhas turmas</h2>
+<h1>Minhas turmas</h1>
 <table>
     <thead>
         <th>Turma</th>
     </thead>
-   {% for turma in turmas.all %}
+    {% for turma in turmas.all %}
     <tbody>
         <tr>
             <td><a href="{% url 'professores:atualizar_turma' turma.pk %}">{{ turma.nome }}</a></td>
