@@ -1,0 +1,21 @@
+.container-fluid {
+    padding: 0;
+}
+
+.navbar {
+    border-bottom: 1px solid #333;
+    margin-bottom: 20px;
+}
+
+.navbar-nav {
+    margin: inherit;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.navbar-light .navbar-nav a.navbar-link {
+    color: #333;
+    letter-spacing: 1px;
+}
