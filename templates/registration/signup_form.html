@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
+{% load bootstrap %}
+{% block title %}Cadastre-se{% endblock %}
 
 {% block content %}
-    <h2>Cadastra-se como {{ user_type }}</h2>
+<div class="offset-1 col-6">
+    <h1>Cadastre-se como {{ user_type }}</h1>
     <form method="post" novalidate>
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}">
-        {{ form.as_p }}
+        {{ form|bootstrap }}
         <button type="submit">Cadastrar</button>
     </form>
+</div>
 {% endblock %}

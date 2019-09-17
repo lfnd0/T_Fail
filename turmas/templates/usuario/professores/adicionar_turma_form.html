@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
+{% load bootstrap %}
+{% block title %}Adicionar turma{% endblock %}
 
 {% block content %}
-    <h2>Criar turma</h2>
+<div class="offset-1 col-5">
+    <h1>Adicionar turma</h1>
     <form method="post" novalidate>
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Criar turma</button>
+        {{ form|bootstrap }}
+        <button type="submit">Adicionar</button>
     </form>
+</div>
 {% endblock %}

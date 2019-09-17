@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
+{% block title %}Cadastre-se{% endblock %}
 
 {% block content %}
-    <h2>Cadastra-se</h2>
+<div class="offset-1 col-6">
+    <h1>Cadastre-se</h1>
     <p>Selecione o tipo de conta:</p>
     <button><a href="{% url 'estudante_signup' %}">Estudante</a></button><br><br>
     <button><a href="{% url 'professor_signup' %}">Professor</a></button>
+</div>
 {% endblock %}

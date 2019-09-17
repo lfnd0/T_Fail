@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
+{% load bootstrap %}
+{% block title %}Atualizar turma{% endblock %}
 
 {% block content %}
-    <h2>Atualizar turma: {{ turma.nome }}</h2>
-        <form method="post" novalidate>
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Atualizar</button><br><br>
-        </form>
-        <a href="{% url 'professores:listar_turmas_professor' %}"><button>Cancelar</button></a>
+<div class="offset-1 col-5">
+    <h1>Atualizar turma: {{ turma.nome }}</h1>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <button type="submit">Atualizar</button><br><br>
+    </form>
+    <a href="{% url 'professores:listar_turmas_professor' %}"><button>Cancelar</button></a>
+</div>
 {% endblock %}
