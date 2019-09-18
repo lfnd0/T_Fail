@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
-{% load bootstrap %}
-{% block title %}Adicionar turma{% endblock %}
+{% load crispy_forms_tags %}
 
+{% block title %}Adicionar turma{% endblock %}
 {% block content %}
-<div class="offset-1 col-5">
-    <h1>Adicionar turma</h1>
-    <form method="post" novalidate>
-        {% csrf_token %}
-        {{ form|bootstrap }}
-        <button type="submit">Adicionar</button>
-    </form>
+<div class="row justify-content-center">
+    <div class="col-6">
+        <h1>Adicionar turma</h1>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit">Adicionar</button>
+        </form>
+    </div>
 </div>
 {% endblock %}
