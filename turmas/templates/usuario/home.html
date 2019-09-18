@@ -2,8 +2,8 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="offset-1 col-10">
+<div class="container">
     <h1>Home</h1>
-    <p>Bem vindo(a) ao Texley!</p>
+        <p>Bem vindo(a) ao Texley {% if user.is_authenticated %} {{ user.username }}! {% else %} visitante! {% endif %}</p>
 </div>
 {% endblock %}
