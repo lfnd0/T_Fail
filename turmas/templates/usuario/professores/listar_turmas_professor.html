@@ -17,10 +17,12 @@
                     {{ turma.nome }}
                 </td>
                 <td class="text-center">
-                    <a href="{% url 'professores:atualizar_turma' turma.pk %}"
-                        class="btn btn-success">Adicionar</a>
+                    <a href="{% url 'professores:atualizar_turma' turma.pk %}"><i
+                            class="fas fa-user-plus"></i></a>
                 </td>
-                <td class="text-center"></td>
+                <td class="text-center">
+                        <i class="fas fa-trash"></i>
+                </td>
                 {% empty %}
             <tr>
                 <td class="text-center" colspan="3">Você não possui turmas criadas.</td>
@@ -28,6 +30,6 @@
             {% endfor %}
         </tbody>
     </table>
-    <a href="{% url 'professores:adicionar_turma' %}" class="btn btn-success mb-3">Adicionar turma</a>
+    <a href="{% url 'professores:adicionar_turma' %}" class="btn btn-success mb-3 btn-sm">Adicionar turma</a>
 </div>
 {% endblock %}
