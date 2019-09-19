@@ -3,15 +3,17 @@
 
 {% block title %}Cadastre-se{% endblock %}
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-6">
-        <h1>Cadastre-se como {{ user_type }}</h1>
-        <form method="post" novalidate>
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ next }}">
-            {{ form|crispy }}
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
-        </form>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h1>Cadastre-se como {{ user_type }}</h1>
+            <form method="post" novalidate>
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}">
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-primary btn-sm">Cadastrar</button>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}
