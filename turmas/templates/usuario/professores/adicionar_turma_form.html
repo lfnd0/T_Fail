@@ -3,14 +3,12 @@
 
 {% block title %}Adicionar turma{% endblock %}
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-6">
-        <h1>Adicionar turma</h1>
-        <form method="post" novalidate>
-            {% csrf_token %}
-            {{ form|crispy }}
-            <button type="submit">Adicionar</button>
-        </form>
-    </div>
+<div class="container">
+    <h1>Adicionar turma</h1>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-success btn-sm">Adicionar</button>
+    </form>
 </div>
 {% endblock %}
