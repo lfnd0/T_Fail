@@ -4,6 +4,15 @@
 {% block content %}
 <div class="container">
     <h1>Minhas turmas</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages  %}
+        <li {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}>
+            {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <table class="table mb-0">
         <thead class="thead-light">
             <th class="text-center">Turma</th>
@@ -17,11 +26,10 @@
                     {{ turma.nome }}
                 </td>
                 <td class="text-center">
-                    <a href="{% url 'professores:atualizar_turma' turma.pk %}"><i
-                            class="fas fa-user-plus"></i></a>
+                    <a href="{% url 'professores:atualizar_turma' turma.pk %}"><i class="fas fa-user-plus"></i></a>
                 </td>
                 <td class="text-center">
-                        <i class="fas fa-trash"></i>
+                    <a href="turma/deletar/{{turma.id}}/"><i class="fas fa-trash"></i></a>
                 </td>
                 {% empty %}
             <tr>
