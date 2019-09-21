@@ -1,10 +1,12 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import login
-from django.views.generic import CreateView, ListView, UpdateView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse
 from django.db.models import Count
+from django.contrib import messages
+from django.core.paginator import Paginator
 
 from ..models import User, Turma
 from ..forms import ProfessorSignUpForm
@@ -59,3 +61,13 @@ class TurmaUpdateView(UpdateView):
     
     def get_success_url(self):
         return reverse('professores:listar_turmas_professor')
+
+@login_required
+@professor_required
+def deleteTurma(request, id):
+    turma = get_object_or_404(Turma, pk=id)
+    turma.delete()
+
+    messages.info(request, 'Turma deletada com sucesso!')
+
+    return redirect('professores:listar_turmas_professor')
