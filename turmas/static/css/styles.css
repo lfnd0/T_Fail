@@ -1,3 +1,4 @@
+/* Login and signup */
 .asteriskField {
     display: none;
 }
@@ -11,8 +12,26 @@ form .alert ul {
     margin: 0;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
+/* Icons */
+.fas.fa-user-plus, .fas.fa-trash {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.fas.fa-user-plus {
+    color: #13c43f
+}
+
+.fas.fa-trash {
+    color: #db1e47;
+}
+
+.fab.fa-github, .fas.fa-university {
+    cursor: pointer;
+    color: white;
+}
+
+/* Footer */
 html {
     position: relative;
     min-height: 100%;
@@ -30,4 +49,13 @@ body {
     line-height: 40px; /* Vertically center the text there */
     color: white;
     background-color: #343a40;
+}
+
+/* Messages */
+ul.messages {
+    padding: 0;
+}
+
+ul.messages li {
+    list-style: none;
 }
