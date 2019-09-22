@@ -6,7 +6,6 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse
 from django.db.models import Count
 from django.contrib import messages
-from django.core.paginator import Paginator
 
 from ..models import User, Turma
 from ..forms import ProfessorSignUpForm
@@ -32,9 +31,11 @@ class TurmaListView(ListView):
     ordering = ('nome', )
     context_object_name = 'turmas'
     template_name = 'usuario/professores/listar_turmas_professor.html'
+    paginate_by = 6
 
     def get_queryset(self):
-        queryset = self.request.user.professor.turmas
+        professor = self.request.user.id
+        queryset = Turma.objects.filter(professor__pk=professor)
         return queryset
 
 @method_decorator([login_required, professor_required], name='dispatch')
