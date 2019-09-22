@@ -53,7 +53,7 @@
                 {% else %}
                 <form class="form-inline my-2 my-lg-0">
                     <a href="{% url 'login' %}" class="btn btn-outline-info">Entrar</a>
-                    <a href="{% url 'signup' %}" class="btn btn-info ml-4">Cadastre-se</a>
+                    <a href="{% url 'signup' %}" class="btn btn-info ml-2">Cadastre-se</a>
                 </form>
                 {% endif %}
             </div>
@@ -69,6 +69,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
 </body>
 <footer class="footer">
     <div class="container">
