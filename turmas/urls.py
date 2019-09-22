@@ -14,6 +14,6 @@ urlpatterns = [
         path('', professores.TurmaListView.as_view(), name='listar_turmas_professor'),
         path('turma/adicionar/', professores.TurmaCreateView.as_view(), name='adicionar_turma'),
         path('turma/adicionar/estudantes/<int:pk>/', professores.TurmaUpdateView.as_view(), name='atualizar_turma'),
-        path('turma/deletar/<int:id>/', professores.deleteTurma, name='deletar_turma')
+        path('turma/deletar/<int:id>/', professores.deletar_turma, name='deletar_turma')
     ], 'usuario'), namespace='professores'))
 ]

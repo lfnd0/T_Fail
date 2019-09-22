@@ -65,10 +65,8 @@ class TurmaUpdateView(UpdateView):
 
 @login_required
 @professor_required
-def deleteTurma(request, id):
+def deletar_turma(request, id):
     turma = get_object_or_404(Turma, pk=id)
     turma.delete()
-
     messages.info(request, 'Turma deletada com sucesso!')
-
     return redirect('professores:listar_turmas_professor')
