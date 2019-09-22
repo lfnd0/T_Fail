@@ -24,6 +24,7 @@ class TurmaListView(ListView):
     ordering = ('nome', )
     context_object_name = 'turmas'
     template_name = 'usuario/estudantes/listar_turmas_estudante.html'
+    paginate_by = 5
 
     def get_queryset(self):
         estudante = self.request.user.id
