@@ -33,8 +33,3 @@ class EstudanteSignUpForm(UserCreationForm):
         user.save()
         estudante = Estudante.objects.create(user=user)
         return user
-
-class TurmaForm(forms.ModelForm):
-    class Meta:
-        model = Turma
-        fields = ('nome', 'professor', 'estudantes')
