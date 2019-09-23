@@ -1,9 +1,12 @@
 from django.views.generic import CreateView, ListView
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
+from django.utils.decorators import method_decorator
 
 from ..models import User, Estudante, Turma
 from ..forms import EstudanteSignUpForm
+from ..decorators import estudante_required
 
 class EstudanteSignUpView(CreateView):
     model = User
@@ -18,7 +21,8 @@ class EstudanteSignUpView(CreateView):
         user = form.save()
         login(self.request, user)
         return redirect('home')
-    
+
+@method_decorator([login_required, estudante_required], name='dispatch')
 class TurmaListView(ListView):
     model = Turma
     ordering = ('nome', )
