@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import login
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.utils.decorators import method_decorator
 from django.urls import reverse
 from django.db.models import Count
@@ -31,7 +31,7 @@ class TurmaListView(ListView):
     ordering = ('nome', )
     context_object_name = 'turmas'
     template_name = 'usuario/professores/listar_turmas_professor.html'
-    paginate_by = 6
+    paginate_by = 5
 
     def get_queryset(self):
         professor = self.request.user.id
