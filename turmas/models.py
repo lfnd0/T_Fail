@@ -31,3 +31,7 @@ class Turma(models.Model):
     
     def __str__(self):
         return self.nome
+
+class Submissao(models.Model):
+    estudante = models.ForeignKey(Estudante, on_delete=models.CASCADE)
+    codigo = models.FileField(upload_to='respostas/codigo')
