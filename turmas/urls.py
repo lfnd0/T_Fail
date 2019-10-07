@@ -7,7 +7,8 @@ urlpatterns = [
     path('turmas/',usuarios.turma, name='turma'),
 
     path('estudantes/', include(([
-        path('', estudantes.TurmaListView.as_view(), name='listar_turmas_estudante')
+        path('', estudantes.TurmaListView.as_view(), name='listar_turmas_estudante'),
+        path('turma/adicionar/submissao', estudantes.SubmissaoCreateView.as_view(), name='adicionar_submissao')
     ], 'usuario'), namespace='estudantes')),
 
     path('professores/', include(([

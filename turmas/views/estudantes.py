@@ -1,11 +1,13 @@
 from django.views.generic import CreateView, ListView
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.utils.decorators import method_decorator
+from django.core.files.storage import FileSystemStorage
 
-from ..models import User, Estudante, Turma
-from ..forms import EstudanteSignUpForm
+
+from ..models import User, Estudante, Turma, Submissao
+from ..forms import EstudanteSignUpForm, SubmissaoForm
 from ..decorators import estudante_required
 
 class EstudanteSignUpView(CreateView):
@@ -34,3 +36,14 @@ class TurmaListView(ListView):
         estudante = self.request.user.id
         queryset = Turma.objects.filter(estudantes__pk=estudante)
         return queryset
+
+class SubmissaoCreateView(CreateView):
+    model = Submissao
+    form_class = SubmissaoForm
+    template_name = 'usuario/estudantes/adicionar_submissao_form.html'
+
+    def form_valid(self, form):
+        resposta = form.save(commit=False)
+        resposta.estudante = self.request.user.estudante
+        resposta.save()
+        return redirect('estudantes:listar_turmas_estudante')
