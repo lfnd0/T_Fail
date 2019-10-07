@@ -24,6 +24,9 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <a href="{% url 'estudantes:adicionar_submissao' %}" class="btn btn-success mb-3 btn-sm">Submeter código</a>
+
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}
