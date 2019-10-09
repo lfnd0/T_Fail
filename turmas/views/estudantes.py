@@ -37,6 +37,7 @@ class TurmaListView(ListView):
         queryset = Turma.objects.filter(estudantes__pk=estudante)
         return queryset
 
+@method_decorator([login_required, estudante_required, name='dispatch'])
 class SubmissaoCreateView(CreateView):
     model = Submissao
     form_class = SubmissaoForm
