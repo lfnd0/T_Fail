@@ -37,14 +37,14 @@ class TurmaListView(ListView):
         queryset = Turma.objects.filter(estudantes__pk=estudante)
         return queryset
 
-@method_decorator([login_required, estudante_required, name='dispatch'])
+@method_decorator([login_required, estudante_required], name='dispatch')
 class SubmissaoCreateView(CreateView):
     model = Submissao
     form_class = SubmissaoForm
     template_name = 'usuario/estudantes/adicionar_submissao_form.html'
 
     def form_valid(self, form):
-        resposta = form.save(commit=False)
-        resposta.estudante = self.request.user.estudante
-        resposta.save()
+        submissao = form.save(commit=False)
+        submissao.estudante = self.request.user.estudante
+        submissao.save()
         return redirect('estudantes:listar_turmas_estudante')
