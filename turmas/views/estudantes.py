@@ -48,7 +48,6 @@ class SubmissaoCreateView(CreateView):
     template_name = 'usuario/estudantes/adicionar_submissao_form.html'
 
     def form_valid(self, form):
-<<<<<<< HEAD
         submissao = form.save(commit=False)   
         submissao.estudante = self.request.user.estudante
         filename = self.request.FILES['codigo']
@@ -72,9 +71,5 @@ class SubmissaoCreateView(CreateView):
         submissao.hal_total_effort = hal.total.effort
         submissao.hal_total_time = hal.total.time
         submissao.hal_total_bugs = hal.total.bugs
-=======
-        submissao = form.save(commit=False)
-        submissao.estudante = self.request.user.estudante
->>>>>>> 63cdd21e1f6096bd0516e184f987ca0e666cb84b
         submissao.save()
         return redirect('estudantes:listar_turmas_estudante')
