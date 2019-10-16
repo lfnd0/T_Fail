@@ -10,6 +10,10 @@ from ..models import User, Estudante, Turma, Submissao
 from ..forms import EstudanteSignUpForm, SubmissaoForm
 from ..decorators import estudante_required
 
+from radon.cli.tools import iter_filenames
+from radon.raw import analyze
+from radon.metrics import h_visit
+
 class EstudanteSignUpView(CreateView):
     model = User
     form_class = EstudanteSignUpForm
@@ -37,14 +41,35 @@ class TurmaListView(ListView):
         queryset = Turma.objects.filter(estudantes__pk=estudante)
         return queryset
 
-@method_decorator([login_required, estudante_required, name='dispatch'])
+@method_decorator([login_required, estudante_required], name='dispatch')
 class SubmissaoCreateView(CreateView):
     model = Submissao
     form_class = SubmissaoForm
     template_name = 'usuario/estudantes/adicionar_submissao_form.html'
 
     def form_valid(self, form):
-        resposta = form.save(commit=False)
-        resposta.estudante = self.request.user.estudante
-        resposta.save()
+        submissao = form.save(commit=False)   
+        submissao.estudante = self.request.user.estudante
+        filename = self.request.FILES['codigo']
+        
+        codigo = filename.read().decode('utf-8')
+
+        raw = analyze(codigo)
+        hal = h_visit(codigo)
+
+        submissao.raw_loc = raw.loc
+        submissao.raw_lloc = raw.lloc
+        submissao.raw_sloc = raw.sloc
+        submissao.hal_total_h1 = hal.total.h1
+        submissao.hal_total_h2 = hal.total.h2
+        submissao.hal_total_N1 = hal.total.N1
+        submissao.hal_total_N2 = hal.total.N2
+        submissao.hal_total_vocabulary = hal.total.vocabulary
+        submissao.hal_total_length = hal.total.length
+        submissao.hal_total_volume = hal.total.volume
+        submissao.hal_total_difficulty = hal.total.difficulty
+        submissao.hal_total_effort = hal.total.effort
+        submissao.hal_total_time = hal.total.time
+        submissao.hal_total_bugs = hal.total.bugs
+        submissao.save()
         return redirect('estudantes:listar_turmas_estudante')
