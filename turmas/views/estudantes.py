@@ -50,9 +50,9 @@ class SubmissaoCreateView(CreateView):
     def form_valid(self, form):
         submissao = form.save(commit=False)   
         submissao.estudante = self.request.user.estudante
-        filename = self.request.FILES['codigo']
+        arquivo = self.request.FILES['codigo']
         
-        codigo = filename.read().decode('utf-8')
+        codigo = arquivo.read().decode('utf-8')
 
         raw = analyze(codigo)
         hal = h_visit(codigo)
@@ -66,6 +66,7 @@ class SubmissaoCreateView(CreateView):
         submissao.hal_total_N2 = hal.total.N2
         submissao.hal_total_vocabulary = hal.total.vocabulary
         submissao.hal_total_length = hal.total.length
+        submissao.hal_total_calculated_length = hal.total.calculated_length
         submissao.hal_total_volume = hal.total.volume
         submissao.hal_total_difficulty = hal.total.difficulty
         submissao.hal_total_effort = hal.total.effort
