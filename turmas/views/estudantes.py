@@ -50,13 +50,11 @@ class SubmissaoCreateView(CreateView):
     def form_valid(self, form):
         submissao = form.save(commit=False)   
         submissao.estudante = self.request.user.estudante
-        arquivo = self.request.FILES['codigo']
         
+        arquivo = self.request.FILES['codigo']
         codigo = arquivo.read().decode('utf-8')
-
         raw = analyze(codigo)
         hal = h_visit(codigo)
-
         submissao.raw_loc = raw.loc
         submissao.raw_lloc = raw.lloc
         submissao.raw_sloc = raw.sloc
@@ -72,5 +70,6 @@ class SubmissaoCreateView(CreateView):
         submissao.hal_total_effort = hal.total.effort
         submissao.hal_total_time = hal.total.time
         submissao.hal_total_bugs = hal.total.bugs
+        
         submissao.save()
         return redirect('estudantes:listar_turmas_estudante')
