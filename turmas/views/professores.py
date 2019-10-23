@@ -1,13 +1,12 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from django.views.generic import CreateView, ListView, UpdateView
 from django.utils.decorators import method_decorator
 from django.urls import reverse
-from django.db.models import Count
 from django.contrib import messages
 
-from ..models import User, Turma
+from ..models import User, Turma, Atividade, Problema
 from ..forms import ProfessorSignUpForm
 from ..decorators import professor_required
 
@@ -70,3 +69,9 @@ def deletar_turma(request, id):
     turma.delete()
     messages.info(request, 'Turma deletada com sucesso!')
     return redirect('professores:listar_turmas_professor')
+
+# class AtividadeCreateView(CreateView):
+#     model = Atividade
+
+# class ProblemaCreateView(CreateView):
+#     model = Problema
