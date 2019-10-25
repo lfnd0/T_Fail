@@ -4,7 +4,7 @@
 {% block title %}Submissão{% endblock %}
 {% block content %}
 <div class="container">
-    <h1>Submeter código</h1>
+    <h1>Submissão</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|crispy }}
