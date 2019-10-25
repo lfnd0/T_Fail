@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.contrib import messages
 
 from ..models import User, Turma, Atividade, Problema
-from ..forms import ProfessorSignUpForm
+from ..forms import ProfessorSignUpForm, AtividadeForm
 from ..decorators import professor_required
 
 class ProfessorSignUpView(CreateView):
@@ -47,6 +47,7 @@ class TurmaCreateView(CreateView):
         turma = form.save(commit=False)
         turma.professor = self.request.user.professor
         turma.save()
+        messages.success(self.request, 'Sua turma foi adicionada com sucesso!')
         return redirect('professores:listar_turmas_professor')
 
 @method_decorator([login_required, professor_required], name='dispatch')
@@ -70,8 +71,19 @@ def deletar_turma(request, id):
     messages.info(request, 'Turma deletada com sucesso!')
     return redirect('professores:listar_turmas_professor')
 
-# class AtividadeCreateView(CreateView):
-#     model = Atividade
+@login_required
+@professor_required
+def adicionar_atividade(request, pk):
+    turma = get_object_or_404(Turma, pk=pk, professor=request.user.professor)
 
-# class ProblemaCreateView(CreateView):
-#     model = Problema
+    if request.method == 'POST':
+        form = AtividadeForm(request.POST)
+        if form.is_valid():
+            atividade = form.save(commit=False)
+            atividade.turma = turma
+            atividade.save()
+            messages.success(request, 'Sua atividade foi adicionada com sucesso!')
+            return redirect('professores:listar_turmas_professor')
+    else:
+        form = AtividadeForm()
+    return render(request, 'usuario/professores/adicionar_atividade_form.html', {'turma': turma, 'form': form})
