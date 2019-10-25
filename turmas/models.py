@@ -37,7 +37,7 @@ class Atividade(models.Model):
     titulo = models.CharField(max_length=100)
 
 class Problema(models.Model):
-    atividade = models.ForeignKey(Atividade, on_delete=models.CASCADE, related_name='atividades')
+    atividade = models.ForeignKey(Atividade, on_delete=models.CASCADE, related_name='problemas')
     pergunta = models.CharField(max_length=200)
 
 class Submissao(models.Model):
