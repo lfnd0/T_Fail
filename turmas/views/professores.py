@@ -40,7 +40,7 @@ class TurmaListView(ListView):
 @method_decorator([login_required, professor_required], name='dispatch')
 class TurmaCreateView(CreateView):
     model = Turma
-    fields = ('nome', )
+    fields = ('nome', 'instituto', )
     template_name = 'usuario/professores/adicionar_turma_form.html'
 
     def form_valid(self, form):
