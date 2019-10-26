@@ -8,14 +8,19 @@ urlpatterns = [
 
     path('estudantes/', include(([
         path('', estudantes.TurmaListView.as_view(), name='listar_turmas_estudante'),
-        path('turma/adicionar/submissao', estudantes.SubmissaoCreateView.as_view(), name='adicionar_submissao')
+        path('turma/<int:pk>/listar/atividades/', estudantes.listar_atividades, name='listar_atividades_estudante'),
+        path('turma/atividade/<int:pk>/listar/problemas/', estudantes.listar_problemas, name='listar_problemas_estudante'),
+        path('turma/atividade/problema/adicionar/submissao/', estudantes.SubmissaoCreateView.as_view(), name='adicionar_submissao')
     ], 'usuario'), namespace='estudantes')),
 
     path('professores/', include(([
         path('', professores.TurmaListView.as_view(), name='listar_turmas_professor'),
         path('turma/adicionar/', professores.TurmaCreateView.as_view(), name='adicionar_turma'),
+        path('turma/<int:id>/deletar/', professores.deletar_turma, name='deletar_turma'),
         path('turma/<int:pk>/adicionar/estudante/', professores.TurmaUpdateView.as_view(), name='atualizar_turma'),
+        path('turma/<int:pk>/listar/atividades', professores.listar_atividades, name='listar_atividades_professor'),
         path('turma/<int:pk>/adicionar/atividade/', professores.adicionar_atividade, name='adicionar_atividade'),
-        path('turma/<int:id>/deletar/', professores.deletar_turma, name='deletar_turma')
+        path('turma/atividade/<int:pk>/listar/problemas/', professores.listar_problemas, name='listar_problemas_professor'),
+        path('turma/atividade/<int:pk>/adicionar/problema/', professores.adicionar_problema, name='adicionar_problema')
     ], 'usuario'), namespace='professores'))
 ]
