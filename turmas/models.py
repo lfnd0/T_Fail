@@ -35,7 +35,10 @@ class Turma(models.Model):
 class Atividade(models.Model):
     turma = models.ForeignKey(Turma, on_delete=models.CASCADE, related_name='atividades')
     titulo = models.CharField(max_length=100)
-
+    
+    def __str__(self):
+        return self.titulo
+    
 class Problema(models.Model):
     atividade = models.ForeignKey(Atividade, on_delete=models.CASCADE, related_name='problemas')
     pergunta = models.CharField(max_length=200)
