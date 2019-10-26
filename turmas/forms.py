@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 
-from .models import User, Estudante, Professor, Turma, Submissao, Atividade
+from .models import User, Estudante, Professor, Turma, Submissao, Atividade, Problema
 
 class ProfessorSignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=60, help_text='Obrigatório. 60 caracteres ou menos.')
@@ -44,3 +44,8 @@ class AtividadeForm(forms.ModelForm):
     class Meta:
         model = Atividade
         fields = ('titulo', )
+
+class ProblemaForm(forms.ModelForm):
+    class Meta:
+        model = Problema
+        fields = ('pergunta', )
