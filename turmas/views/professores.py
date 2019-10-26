@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.contrib import messages
 
 from ..models import User, Turma, Atividade, Problema
-from ..forms import ProfessorSignUpForm, AtividadeForm
+from ..forms import ProfessorSignUpForm, AtividadeForm, ProblemaForm
 from ..decorators import professor_required
 
 class ProfessorSignUpView(CreateView):
@@ -73,6 +73,12 @@ def deletar_turma(request, id):
 
 @login_required
 @professor_required
+def listar_atividades(request, pk):
+    atividades = Atividade.objects.filter(turma__pk=pk)
+    return render(request, 'usuario/professores/listar_atividades_professor.html', {'atividades': atividades})
+
+@login_required
+@professor_required
 def adicionar_atividade(request, pk):
     turma = get_object_or_404(Turma, pk=pk, professor=request.user.professor)
 
@@ -83,7 +89,31 @@ def adicionar_atividade(request, pk):
             atividade.turma = turma
             atividade.save()
             messages.success(request, 'Sua atividade foi adicionada com sucesso!')
-            return redirect('professores:listar_turmas_professor')
+            return redirect('professores:listar_atividades_professor', turma.pk)
     else:
         form = AtividadeForm()
     return render(request, 'usuario/professores/adicionar_atividade_form.html', {'turma': turma, 'form': form})
+
+
+@login_required
+@professor_required
+def listar_problemas(request, pk):
+    problemas = Problema.objects.filter(atividade__pk=pk)
+    return render(request, 'usuario/professores/listar_problemas_professor.html', {'problemas': problemas})
+
+@login_required
+@professor_required
+def adicionar_problema(request, pk):
+    atividade = get_object_or_404(Atividade, pk=pk)
+
+    if request.method == 'POST':
+        form = ProblemaForm(request.POST)
+        if form.is_valid():
+            problema = form.save(commit=False)
+            problema.atividade = atividade
+            problema.save()
+            messages.success(request, 'Seu problema foi adicionado com sucesso!')
+            return redirect('professores:listar_problemas_professor', atividade.pk)
+    else:
+        form = ProblemaForm()
+    return render(request, 'usuario/professores/adicionar_problema_form.html', {'atividade': atividade, 'form': form})
