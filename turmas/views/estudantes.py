@@ -3,10 +3,9 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.utils.decorators import method_decorator
-from django.core.files.storage import FileSystemStorage
+from django.contrib import messages
 
-
-from ..models import User, Estudante, Turma, Submissao
+from ..models import User, Estudante, Turma, Submissao, Atividade, Problema
 from ..forms import EstudanteSignUpForm, SubmissaoForm
 from ..decorators import estudante_required
 
@@ -41,6 +40,18 @@ class TurmaListView(ListView):
         queryset = Turma.objects.filter(estudantes__pk=estudante)
         return queryset
 
+@login_required
+@estudante_required
+def listar_atividades(request, pk):
+    atividades = Atividade.objects.filter(turma__pk=pk)
+    return render(request, 'usuario/estudantes/listar_atividades_estudante.html', {'atividades': atividades})
+
+@login_required
+@estudante_required
+def listar_problemas(request, pk):
+    problemas = Problema.objects.filter(atividade__pk=pk)
+    return render(request, 'usuario/estudantes/listar_problemas_estudante.html', {'problemas': problemas})
+
 @method_decorator([login_required, estudante_required], name='dispatch')
 class SubmissaoCreateView(CreateView):
     model = Submissao
@@ -72,4 +83,5 @@ class SubmissaoCreateView(CreateView):
         submissao.hal_total_bugs = hal.total.bugs
         
         submissao.save()
-        return redirect('estudantes:listar_turmas_estudante')
+        messages.success(self.request, 'Submissão realizada com sucesso!')
+        return redirect('estudantes:adicionar_submissao')
