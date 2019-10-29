@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Adicionar problema{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Adicionar problema</h1>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-success btn-sm">Adicionar</button>
+        <a href="{% url 'professores:listar_turmas_professor' %}" class="btn btn-danger ml-2 btn-sm">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
