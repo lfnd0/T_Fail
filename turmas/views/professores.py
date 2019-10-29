@@ -94,7 +94,6 @@ def adicionar_atividade(request, pk):
         form = AtividadeForm()
     return render(request, 'usuario/professores/adicionar_atividade_form.html', {'turma': turma, 'form': form})
 
-
 @login_required
 @professor_required
 def listar_problemas(request, pk):
