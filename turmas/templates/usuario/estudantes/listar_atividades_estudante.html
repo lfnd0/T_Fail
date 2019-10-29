@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Minhas atividades{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Minhas atividades</h1>
+    <table class="table mb-0">
+        <thead class="thead-light">
+            <th class="text-center">Turma</th>
+            <th class="text-center">Atividade</th>
+        </thead>
+        {% for atividade in atividades %}
+        <tbody>
+            <tr>
+                <td class="text-center">
+                    {{ atividade.turma }}
+                </td>
+                <td class="text-center">
+                    <a href="{% url 'estudantes:listar_problemas_estudante' atividade.pk %}">{{ atividade.titulo }}</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td class="text-center" colspan="3">Esta turma não possui atividades criadas.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'estudantes:listar_turmas_estudante'%}" class="btn btn-danger btn-sm">Listar turmas</a>
+</div>
+{% endblock %}

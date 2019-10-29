@@ -8,25 +8,28 @@
         <thead class="thead-light">
             <tr>
                 <th class="text-center">Turma</th>
+                <th class="text-center">Instituto</th>
                 <th class="text-center">Professor</th>
             </tr>
         </thead>
         {% for turma in turmas %}
         <tbody>
             <tr>
-                <td class="text-center">{{ turma.nome }}</td>
+                <td class="text-center">
+                    <a href="{% url 'estudantes:listar_atividades_estudante' turma.pk %}">{{ turma.nome }}</a>
+                </td>
+                <td class="text-center">
+                    {{ turma.instituto }}
+                </td>
                 <td class="text-center">{{ turma.professor }}</td>
             </tr>
             {% empty %}
             <tr>
-                <td class="text-center" colspan="2">Você não participa de nenhuma turma.</td>
+                <td class="text-center" colspan="3">Você não participa de nenhuma turma.</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-
-    <a href="{% url 'estudantes:adicionar_submissao' %}" class="btn btn-success mb-3 btn-sm">Submeter código</a>
-
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}
