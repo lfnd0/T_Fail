@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}Meus problemas{% endblock %}
+{% block title %}Meus problemas criados{% endblock %}
 {% block content %}
 <div class="container">
-    <h1>Meus problemas</h1>
+    <h1>Meus problemas criados</h1>
     {% if messages %}
     <ul class="messages">
         {% for message in messages  %}
@@ -28,7 +28,7 @@
                 <td class="text-center">
                     {{ problema.atividade }}
                 </td>
-                <td class="text-center">
+                <td class="text-justify">
                     {{ problema.pergunta }}
                 </td>
             </tr>

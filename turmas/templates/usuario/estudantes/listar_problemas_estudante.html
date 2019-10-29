@@ -20,11 +20,11 @@
                 <td class="text-center">
                     {{ problema.atividade }}
                 </td>
-                <td class="text-center">
+                <td class="text-justify">
                     {{ problema.pergunta }}
                 </td>
                 <td class="text-center">
-                    <a href="{% url 'estudantes:adicionar_submissao' %}">
+                    <a href="{% url 'estudantes:adicionar_submissao' problema.pk %}">
                         <span><i class="fas fa-file-upload"></i></span>
                     </a>
                 </td>
