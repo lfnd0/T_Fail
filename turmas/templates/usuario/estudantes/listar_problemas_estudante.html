@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Meus problemas{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Meus problemas</h1>
+    <table class="table mb-0">
+        <thead class="thead-light">
+            <th class="text-center">ID</th>
+            <th class="text-center">Atividade</th>
+            <th class="text-center">Pergunta</th>
+            <th class="text-center">Submissão</th>
+        </thead>
+        {% for problema in problemas %}
+        <tbody>
+            <tr>
+                <td class="text-center">
+                    {{ problema.id }}
+                </td>
+                <td class="text-center">
+                    {{ problema.atividade }}
+                </td>
+                <td class="text-center">
+                    {{ problema.pergunta }}
+                </td>
+                <td class="text-center">
+                    <a href="{% url 'estudantes:adicionar_submissao' %}">
+                        <span><i class="fas fa-file-upload"></i></span>
+                    </a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td class="text-center" colspan="4">Esta atividade não possui problemas criados.</td>        
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'estudantes:listar_turmas_estudante'%}" class="btn btn-danger btn-sm">Listar turmas</a>
+</div>
+{% endblock %}
