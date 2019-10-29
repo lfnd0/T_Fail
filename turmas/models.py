@@ -42,7 +42,8 @@ class Atividade(models.Model):
     
 class Problema(models.Model):
     atividade = models.ForeignKey(Atividade, on_delete=models.CASCADE, related_name='problemas')
-    pergunta = models.CharField(max_length=200)
+    pergunta = models.TextField(max_length=None)
+    
     def __str__(self):
         return self.pergunta
 
