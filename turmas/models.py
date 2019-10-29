@@ -43,9 +43,12 @@ class Atividade(models.Model):
 class Problema(models.Model):
     atividade = models.ForeignKey(Atividade, on_delete=models.CASCADE, related_name='problemas')
     pergunta = models.CharField(max_length=200)
+    def __str__(self):
+        return self.pergunta
 
 class Submissao(models.Model):
     estudante = models.ForeignKey(Estudante, on_delete=models.CASCADE)
+    problema = models.ForeignKey(Problema, on_delete=models.CASCADE, related_name='submissoes')
     codigo = models.FileField(upload_to='submissoes')
     raw_loc = models.IntegerField()
     raw_lloc = models.IntegerField()
