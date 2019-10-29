@@ -24,7 +24,7 @@
         <tbody>
             <tr>
                 <td class="text-center">
-                    {{ turma.nome }}
+                    <a href="{% url 'professores:listar_atividades_professor' turma.pk %}">{{ turma.nome }}</a>
                 </td>
                 <td class="text-center">
                     <a href="{% url 'professores:adicionar_atividade' turma.pk %}">
@@ -37,13 +37,13 @@
                     </a>
                 </td>
                 <td class="text-center">
-                    <a href="{% url 'professores:deletar_turma' turma.id %}">
+                    <a href="{% url 'professores:deletar_turma' turma.id %}" class="delete-btn">
                         <span><i class="fas fa-trash"></i></span>
                     </a>
                 </td>
                 {% empty %}
             <tr>
-                <td class="text-center" colspan="3">Você não possui turmas criadas.</td>
+                <td class="text-center" colspan="4">Você não possui turmas criadas.</td>
             </tr>
             {% endfor %}
         </tbody>
