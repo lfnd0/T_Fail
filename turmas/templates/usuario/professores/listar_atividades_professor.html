@@ -18,6 +18,7 @@
             <th class="text-center">Turma</th>
             <th class="text-center">Atividade</th>
             <th class="text-center">Adicionar problema</th>
+            <th class="text-center">Deletar</th>
         </thead>
         {% for atividade in atividades %}
         <tbody>
@@ -33,10 +34,15 @@
                         <span><i class="fas fa-question-circle"></i></span>
                     </a>
                 </td>
+                <td class="text-center">
+                    <a href="{% url 'professores:deletar_atividade' atividade.id %}" class="delete-btn">
+                        <span><i class="fas fa-trash"></i></span>
+                    </a>
+                </td>
             </tr>
         {% empty %}
             <tr>
-                <td class="text-center" colspan="3">Você não possui atividades criadas.</td>
+                <td class="text-center" colspan="4">Você não possui atividades criadas.</td>
             </tr>
         {% endfor %}
         </tbody>
