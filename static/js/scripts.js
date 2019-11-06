@@ -3,7 +3,7 @@ $(document).ready(function () {
     $(deleteBtn).on('click', function (e) {
         e.preventDefault()
         var delLink = $(this).attr('href')
-        var result = confirm('Deseja mesmo deletar esta turma?')
+        var result = confirm('Deseja mesmo deletar?')
         if(result) {
             window.location.href=delLink
         }
