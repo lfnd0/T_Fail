@@ -20,7 +20,9 @@ urlpatterns = [
         path('turma/<int:pk>/adicionar/estudante/', professores.TurmaUpdateView.as_view(), name='atualizar_turma'),
         path('turma/<int:pk>/listar/atividades', professores.listar_atividades, name='listar_atividades_professor'),
         path('turma/<int:pk>/adicionar/atividade/', professores.adicionar_atividade, name='adicionar_atividade'),
+        path('turma/atividade/<int:id>/deletar/', professores.deletar_atividade, name='deletar_atividade'),
         path('turma/atividade/<int:pk>/listar/problemas/', professores.listar_problemas, name='listar_problemas_professor'),
-        path('turma/atividade/<int:pk>/adicionar/problema/', professores.adicionar_problema, name='adicionar_problema')
+        path('turma/atividade/<int:pk>/adicionar/problema/', professores.adicionar_problema, name='adicionar_problema'),
+        path('turma/atividade/problema/<int:id>/deletar/', professores.deletar_problema, name='deletar_problema')
     ], 'usuario'), namespace='professores'))
 ]
