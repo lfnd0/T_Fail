@@ -96,6 +96,14 @@ def adicionar_atividade(request, pk):
 
 @login_required
 @professor_required
+def deletar_atividade(request, id):
+    atividade = get_object_or_404(Atividade, pk=id)
+    atividade.delete()
+    messages.info(request, 'Atividade deletada com sucesso!')
+    return redirect('professores:listar_turmas_professor')
+
+@login_required
+@professor_required
 def listar_problemas(request, pk):
     problemas = Problema.objects.filter(atividade__pk=pk)
     return render(request, 'usuario/professores/listar_problemas_professor.html', {'problemas': problemas})
@@ -116,3 +124,12 @@ def adicionar_problema(request, pk):
     else:
         form = ProblemaForm()
     return render(request, 'usuario/professores/adicionar_problema_form.html', {'atividade': atividade, 'form': form})
+
+
+@login_required
+@professor_required
+def deletar_problema(request, id):
+    problema = get_object_or_404(Problema, pk=id)
+    problema.delete()
+    messages.info(request, 'Problema deletado com sucesso!')
+    return redirect('professores:listar_turmas_professor')
