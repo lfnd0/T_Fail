@@ -17,10 +17,13 @@ class Estudante(models.Model):
     
     def __str__(self):
         return self.user.username
-
+    
 class Professor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     
+    class Meta:
+        verbose_name_plural = 'Professores'
+
     def __str__(self):
         return self.user.username
 
@@ -66,3 +69,17 @@ class Submissao(models.Model):
     hal_total_effort = models.DecimalField(max_digits=8, decimal_places=2)
     hal_total_time = models.DecimalField(max_digits=8, decimal_places=4)
     hal_total_bugs = models.DecimalField(max_digits=8, decimal_places=4)
+
+    class Meta:
+        verbose_name_plural = 'Submissões'
+
+class Avaliacao(models.Model):
+    submissao = models.ForeignKey(Submissao, on_delete=models.CASCADE)
+    nota = models.FloatField()
+    observacao = models.TextField(max_length=None)
+    
+    class Meta:
+        verbose_name_plural = 'Avaliações'
+
+    def __str__(self):
+        return self.observacao
