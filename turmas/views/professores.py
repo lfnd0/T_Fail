@@ -139,3 +139,20 @@ def deletar_problema(request, id):
 def listar_submissoes(request, pk):
     submissoes = Submissao.objects.filter(problema__pk=pk)
     return render(request, 'usuario/professores/listar_submissoes_professor.html', {'submissoes':submissoes})
+
+@login_required
+@professor_required
+def adicionar_avaliacao(request, pk):
+    submissao = get_object_or_404(Submissao, pk=pk)
+
+    if request.method == 'POST':
+        form = AvaliacaoForm(request.POST)
+        if form.is_valid():
+            avaliacao = form.save(commit=False)
+            avaliacao.submissao = submissao
+            avaliacao.save()
+            messages.success(request, 'Sua avaliação foi adicionada com sucesso!')
+            return redirect('professores:listar_turmas_professor')
+    else:
+        form = AvaliacaoForm()
+    return render(request, 'usuario/professores/adicionar_avaliacao_form.html', {'submissao': submissao, 'form': form})
