@@ -29,8 +29,8 @@
                 <td class="text-center">
                     {{ problema.atividade }}
                 </td>
-                <td class="text-justify">
-                    {{ problema.pergunta }}
+                <td class="text-center">
+                    <a href="{% url 'professores:listar_submissoes_professor' problema.pk %}">{{ problema.pergunta }}</a>
                 </td>
                 <td class="text-center">
                     <a href="{% url 'professores:deletar_problema' problema.id %}" class="delete-btn">

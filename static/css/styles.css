@@ -18,7 +18,7 @@ form .alert ul {
     color: white;
 }
 
-.fas.fa-tasks, .fas.fa-user-plus, .fas.fa-question-circle, .fas.fa-trash, .fas.fa-file-upload {
+.fas.fa-tasks, .fas.fa-user-plus, .fas.fa-question-circle, .fas.fa-trash, .fas.fa-pen-alt {
     cursor: pointer;
     font-size: 20px;
 }
@@ -40,6 +40,10 @@ form .alert ul {
 }
 
 .fas.fa-file-upload {
+    color: #1E90FF;
+}
+
+.fas.fa-pen-alt {
     color: #1E90FF;
 }
 /* Footer */

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Submissões do problema{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Submissões do problema</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages  %}
+        <li {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}>
+            {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <table class="table mb-0">
+        <thead class="thead-light">
+            <th class="text-center">Estudante</th>
+            <th class="text-center">Código</th>
+            <th class="text-center">Avaliar</th>
+            </thead>
+        {% for submissao in submissoes %}
+        <tbody>
+            <tr>
+                <td class="text-center">
+                    {{ submissao.estudante }}
+                </td>
+                <td class="text-center">
+                    {{ submissao.codigo }}
+                </td>
+                <td class="text-center">
+                    <span><i class="fas fa-pen-alt"></i></span>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td class="text-center" colspan="4">Não existem submissões para este problema.</td>        
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
