@@ -23,6 +23,7 @@ urlpatterns = [
         path('turma/atividade/<int:id>/deletar/', professores.deletar_atividade, name='deletar_atividade'),
         path('turma/atividade/<int:pk>/listar/problemas/', professores.listar_problemas, name='listar_problemas_professor'),
         path('turma/atividade/<int:pk>/adicionar/problema/', professores.adicionar_problema, name='adicionar_problema'),
-        path('turma/atividade/problema/<int:id>/deletar/', professores.deletar_problema, name='deletar_problema')
+        path('turma/atividade/problema/<int:id>/deletar/', professores.deletar_problema, name='deletar_problema'),
+        path('turma/atividade/problema/<int:pk>/listar/submissoes/', professores.listar_submissoes, name='listar_submissoes_professor')
     ], 'usuario'), namespace='professores'))
 ]

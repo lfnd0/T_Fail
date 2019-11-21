@@ -6,8 +6,8 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse
 from django.contrib import messages
 
-from ..models import User, Turma, Atividade, Problema
-from ..forms import ProfessorSignUpForm, AtividadeForm, ProblemaForm
+from ..models import User, Turma, Atividade, Problema, Avaliacao, Submissao
+from ..forms import ProfessorSignUpForm, AtividadeForm, ProblemaForm, AvaliacaoForm
 from ..decorators import professor_required
 
 class ProfessorSignUpView(CreateView):
@@ -133,3 +133,9 @@ def deletar_problema(request, id):
     problema.delete()
     messages.info(request, 'Problema deletado com sucesso!')
     return redirect('professores:listar_turmas_professor')
+
+@login_required
+@professor_required
+def listar_submissoes(request, pk):
+    submissoes = Submissao.objects.filter(problema__pk=pk)
+    return render(request, 'usuario/professores/listar_submissoes_professor.html', {'submissoes':submissoes})
