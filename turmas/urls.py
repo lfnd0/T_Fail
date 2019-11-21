@@ -10,7 +10,8 @@ urlpatterns = [
         path('', estudantes.TurmaListView.as_view(), name='listar_turmas_estudante'),
         path('turma/<int:pk>/listar/atividades/', estudantes.listar_atividades, name='listar_atividades_estudante'),
         path('turma/atividade/<int:pk>/listar/problemas/', estudantes.listar_problemas, name='listar_problemas_estudante'),
-        path('turma/atividade/problema/<int:pk>/adicionar/submissao/', estudantes.adicionar_submissao, name='adicionar_submissao')
+        path('turma/atividade/problema/<int:pk>/adicionar/submissao/', estudantes.adicionar_submissao, name='adicionar_submissao'),
+        path('turma/atividade/problema/<int:pk>/listar/submissoes', estudantes.listar_submissoes, name='listar_submissoes_estudante')
     ], 'usuario'), namespace='estudantes')),
 
     path('professores/', include(([

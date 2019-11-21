@@ -92,3 +92,9 @@ def adicionar_submissao(request, pk):
     else:
         form = SubmissaoForm()
     return render(request, 'usuario/estudantes/adicionar_submissao_form.html', {'problema': problema, 'form': form})
+
+@login_required
+@estudante_required
+def listar_submissoes(request, pk):
+    submissoes = Submissao.objects.filter(problema__pk=pk)
+    return render(request, 'usuario/estudantes/listar_submissoes_estudante.html', {'submissoes': submissoes})
