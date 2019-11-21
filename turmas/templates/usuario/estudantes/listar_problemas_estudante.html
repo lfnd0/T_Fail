@@ -21,7 +21,7 @@
                     {{ problema.atividade }}
                 </td>
                 <td class="text-justify">
-                    {{ problema.pergunta }}
+                    <a href="{% url 'estudantes:listar_submissoes_estudante' problema.pk %}">{{ problema.pergunta }}</a>
                 </td>
                 <td class="text-center">
                     <a href="{% url 'estudantes:adicionar_submissao' problema.pk %}">
