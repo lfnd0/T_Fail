@@ -29,7 +29,9 @@
                     {{ submissao.codigo }}
                 </td>
                 <td class="text-center">
-                    <span><i class="fas fa-pen-alt"></i></span>
+                    <a href="{% url 'professores:adicionar_avaliacao' submissao.pk %}">
+                        <span><i class="fas fa-pen-alt"></i></span>
+                    </a>
                 </td>
             </tr>
         {% empty %}
