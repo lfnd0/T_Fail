@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.contrib import messages
 
-from ..models import User, Estudante, Turma, Atividade, Problema, Submissao
+from ..models import User, Estudante, Turma, Atividade, Problema, Submissao, Avaliacao
 from ..forms import EstudanteSignUpForm, SubmissaoForm
 from ..decorators import estudante_required
 
@@ -98,3 +98,9 @@ def adicionar_submissao(request, pk):
 def listar_submissoes(request, pk):
     submissoes = Submissao.objects.filter(problema__pk=pk)
     return render(request, 'usuario/estudantes/listar_submissoes_estudante.html', {'submissoes': submissoes})
+
+@login_required
+@estudante_required
+def listar_avaliacoes(request, pk):
+    avaliacoes = Avaliacao.objects.filter(submissao__pk=pk)
+    return render(request, 'usuario/estudantes/listar_avaliacoes_estudante.html', {'avaliacoes': avaliacoes})
