@@ -4,5 +4,36 @@
 {% block content %}
 <div class="container">
     <h1>Minhas submissões</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages  %}
+        <li {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}>
+            {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <table class="table mb-0">
+        <thead class="thead-light">
+            <th class="text-center">Código</th>
+            <th class="text-center">Avaliação</th>
+            </thead>
+        {% for submissao in submissoes %}
+        <tbody>
+            <tr>
+                <td class="text-center">
+                    {{ submissao.codigo }}
+                </td>
+                <td class="text-center">
+                    <a href="{% url 'estudantes:listar_avaliacoes_estudante' submissao.pk %}">Resultado</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td class="text-center" colspan="2">Não existe(m) submissão(ões) para este problema.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}
