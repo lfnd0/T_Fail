@@ -15,18 +15,20 @@
     {% endif %}
     <table class="table mb-0">
         <thead class="thead-light">
+            <th class="text-center">Download</th>
             <th class="text-center">Estudante</th>
-            <th class="text-center">Código</th>
             <th class="text-center">Avaliar</th>
             </thead>
         {% for submissao in submissoes %}
         <tbody>
             <tr>
                 <td class="text-center">
-                    {{ submissao.estudante }}
+                    <a href="{{ submissao.codigo.url }}">
+                        <span><i class="fas fa-file-download"></i></span>
+                    </a>
                 </td>
                 <td class="text-center">
-                    {{ submissao.codigo }}
+                    {{ submissao.estudante }}
                 </td>
                 <td class="text-center">
                     <a href="{% url 'professores:adicionar_avaliacao' submissao.pk %}">
@@ -36,7 +38,7 @@
             </tr>
         {% empty %}
             <tr>
-                <td class="text-center" colspan="4">Não existe(m) submissão(ões) para este problema.</td>
+                <td class="text-center" colspan="3">Não existe(m) submissão(ões) para este problema.</td>
             </tr>
         {% endfor %}
         </tbody>
