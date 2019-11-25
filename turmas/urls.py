@@ -2,6 +2,9 @@ from django.urls import include, path
 
 from .views import estudantes, professores, usuarios
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('', usuarios.home, name='home'),
     path('turmas/',usuarios.turma, name='turma'),
@@ -30,3 +33,6 @@ urlpatterns = [
         path('turma/atividade/problema/submissao/<int:pk>/adicionar/avaliacao', professores.adicionar_avaliacao, name='adicionar_avaliacao')
     ], 'usuario'), namespace='professores'))
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
