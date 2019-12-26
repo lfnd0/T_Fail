@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'turmas'
+    'app'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -120,7 +120,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-AUTH_USER_MODEL = 'turmas.User'
+AUTH_USER_MODEL = 'app.User'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
