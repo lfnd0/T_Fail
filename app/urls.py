@@ -7,7 +7,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', usuarios.home, name='home'),
-    path('turmas/',usuarios.turma, name='turma'),
+    path('turmas/', usuarios.turma, name='turma'),
 
     path('estudantes/', include(([
         path('', estudantes.TurmaListView.as_view(), name='listar_turmas_estudante'),
