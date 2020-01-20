@@ -140,6 +140,12 @@ def listar_submissoes(request, pk):
     submissoes = Submissao.objects.filter(problema__pk=pk)
     return render(request, 'usuario/professores/listar_submissoes_professor.html', {'submissoes':submissoes})
 
+# @login_required
+# @professor_required
+# def criar_agrupamentos(request, pk):
+#     submissao = Submissao.objects.filter(problema__pk=pk)
+#     metricas = submissao.values('raw_loc', 'raw_lloc', 'raw_sloc', 'hal_total_h1', 'hal_total_h2', 'hal_total_N1', 'hal_total_N2')
+
 @login_required
 @professor_required
 def adicionar_avaliacao(request, pk):
