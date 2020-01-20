@@ -2,8 +2,10 @@
 
 ## Configurações necessárias para executar o projeto:
 
-  ### Instalação do ambiente virtual:
-    python -m venv env
+  ### Instalação do Virtualenv:
+    pip install virtualenv
+  ### Criação do ambiente virtual:
+    virtualenv env
   ### Ativação do ambiente virtual:
     env\Scripts\activate
   ### Instalação dos requisitos do projeto:
