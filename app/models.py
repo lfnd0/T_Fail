@@ -73,8 +73,14 @@ class Submissao(models.Model):
     class Meta:
         verbose_name_plural = 'Submissões'
 
+# class Agrupamento(models.Model):
+#     problema = models.ForeignKey(Problema, on_delete=models.CASCADE)
+#     submissao = models.ForeignKey(Submissao, on_delete=models.CASCADE)
+#     grupos = models.IntegerField()
+ 
 class Avaliacao(models.Model):
     submissao = models.ForeignKey(Submissao, on_delete=models.CASCADE)
+    # agrupamento = models.ForeignKey(Agrupamento, on_delete=models.CASCADE)
     nota = models.FloatField()
     observacao = models.TextField(max_length=None)
     
