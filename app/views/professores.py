@@ -144,7 +144,18 @@ def listar_submissoes(request, pk):
 # @professor_required
 # def criar_agrupamentos(request, pk):
 #     submissao = Submissao.objects.filter(problema__pk=pk)
-#     metricas = submissao.values('raw_loc', 'raw_lloc', 'raw_sloc', 'hal_total_h1', 'hal_total_h2', 'hal_total_N1', 'hal_total_N2')
+    
+#     ids = submissao.values_list('id')
+#     ids = list(ids)
+#     ids = list(map(list, ids))
+
+#     metricas = submissao.values_list('raw_loc', 'raw_lloc', 'raw_sloc', 'hal_total_h1', 'hal_total_h2', 'hal_total_N1', 'hal_total_N2')
+#     metricas = list(metricas)
+#     metricas = list(map(list, metricas))
+
+def get_array(Table, column):
+    rows = Table.objects.values(column)
+    return [row[column] for row in rows]
 
 @login_required
 @professor_required
