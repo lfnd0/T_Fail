@@ -3,8 +3,8 @@
 (3) hal_total_h2
 (4) hal_total_N1
 (5) hal_total_N2
-(6) corretude
-(7) complexidade ciclomatica
+(6) corretude_sintatica
+(7) complexidade_ciclomatica
 
 1 - 2   |      
 1 - 3   |   2 - 3   |   
