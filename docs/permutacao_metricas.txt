@@ -1,0 +1,12 @@
+(1) raw_loc
+(2) hal_total_h1
+(3) hal_total_h2
+(4) hal_total_N1
+(5) hal_total_N2
+(6) corretude
+(7) complexidade ciclomatica
+
+1 - 2   |      
+1 - 3   |   2 - 3   |   
+1 - 4   |   2 - 4   |   3 - 4
+1 - 5   |   2 - 5   |   3 - 5   |   4 - 5
