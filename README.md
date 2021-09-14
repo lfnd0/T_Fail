@@ -1,16 +1,14 @@
-# Texley
+# PIBIC/UFAL 2019-2020
+![](https://img.shields.io/badge/django-v.2.2.13-brightgreen)  ![](https://img.shields.io/badge/bootstrap-v.4.3.1-blueviolet)
 
-## Configurações necessárias para executar o projeto:
+## Texley
 
-  ### Instalação do Virtualenv:
-    pip install virtualenv
-  ### Criação do ambiente virtual:
-    virtualenv env
-  ### Ativação do ambiente virtual:
-    env\Scripts\activate
-  ### Instalação dos requisitos do projeto:
-    pip install -r requirements.txt
-  ### Adição das entidades no banco de dados:
-    python manage.py migrate
-  ### Execução do projeto no servidor local:
-    python manage.py runserver
+### Sobre o projeto
+Uma ferramenta para apoiar o feedback em disciplinas de programação introdutória.
+
+### Execução da aplicação
+  1. Criação do ambiente virtual: `python -m venv env`.
+  2. Ativação do ambiente virtual: `env\Scripts\activate`.
+  3. Instalação das dependências: `pip install -r requirements.txt`.
+  4. Migração dos modelos: `python manage.py migrate`.
+  5. Execução: `python manage.py runserver`.
