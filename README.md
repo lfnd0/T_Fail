@@ -7,8 +7,9 @@
 Uma ferramenta para apoiar o feedback em disciplinas de programação introdutória.
 
 ### Execução da aplicação
-  1. Criação do ambiente virtual: `python -m venv env`.
-  2. Ativação do ambiente virtual: `env\Scripts\activate`.
-  3. Instalação das dependências: `pip install -r requirements.txt`.
-  4. Migração dos modelos: `python manage.py migrate`.
-  5. Execução: `python manage.py runserver`.
+  1. Criação e execução do banco de dados: `docker-compose up -d`. 
+  2. Criação do ambiente virtual: `python -m venv .venv`.
+  3. Ativação do ambiente virtual: `.venv\Scripts\activate` ou `source .venv/bin/activate`.
+  4. Instalação das dependências: `pip install -r requirements.txt`.
+  5. Migração dos modelos: `python manage.py migrate`.
+  6. Execução: `python manage.py runserver`.
