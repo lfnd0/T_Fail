@@ -4,7 +4,7 @@
 ## Texley
 
 ### Sobre o projeto
-Uma ferramenta para apoiar o feedback em disciplinas de programação introdutória.
+Uma ferramenta para apoiar o feedback em disciplinas de programação introdutória, através da extração de medidas de métricas de software.
 
 ### Execução da aplicação
   1. Criação e execução do banco de dados: `docker-compose up -d`. 
