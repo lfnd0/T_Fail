@@ -3,7 +3,7 @@ version: "3.9"
 services:
   database:
     image: mysql
-    container_name: mysql-bd
+    container_name: database
     environment:
       MYSQL_DATABASE: 'texley'
       MYSQL_USER: 'root'
@@ -12,8 +12,8 @@ services:
     ports:
       - '3306:3306'
     volumes:
-      - my-db:/var/lib/mysql
+      - mydb:/var/lib/mysql
 
 volumes:
-  my-db:
+  mydb:
     driver: local
