@@ -10,9 +10,6 @@ from ..models import User, Turma, Atividade, Problema, Avaliacao, Submissao
 from ..forms import ProfessorSignUpForm, AtividadeForm, ProblemaForm, AvaliacaoForm
 from ..decorators import professor_required
 
-# import numpy as np
-# from scipy.cluster.vq import kmeans, vq
-
 class ProfessorSignUpView(CreateView):
     model = User
     form_class = ProfessorSignUpForm
@@ -143,24 +140,6 @@ def listar_submissoes(request, pk):
     submissoes = Submissao.objects.filter(problema__pk=pk)
     return render(request, 'usuario/professores/listar_submissoes_professor.html', {'submissoes':submissoes})
 
-# @login_required
-# @professor_required
-# def criar_agrupamentos(request, pk):
-#     submissao = Submissao.objects.filter(problema__pk=pk)
-    
-#     ids_codigos = submissao.values_list('id', flat=True)
-#     ids_codigos = list(ids_codigos)
-#     ids_codigos = list(map(list, ids_codigos))
-
-#     nome_metricas = ['raw_loc', 'hal_total_h1', 'hal_total_h2', 'hal_total_N1', 'hal_total_N2']
-
-#     valores_metricas = submissao.values_list('raw_loc', 'hal_total_h1', 'hal_total_h2', 'hal_total_N1', 'hal_total_N2')
-#     valores_metricas = list(valores_metricas)
-#     valores_metricas = list(map(list, valores_metricas))
-
-#     lista_auxiliar = [ids, metricas]
-#     lista_final = []
-#     lista_final.append(lista_auxiliar)
 
 @login_required
 @professor_required
