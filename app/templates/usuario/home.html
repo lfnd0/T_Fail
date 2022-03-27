@@ -4,6 +4,6 @@
 {% block content %}
 <div class="container">
     <h1>Home</h1>
-        <p>Bem vindo ao Texley, {% if user.is_authenticated %} {{ user.username }}! {% else %} visitante! {% endif %}</p>
+        <p>Bem vindo(a) ao Texley, {% if user.is_authenticated %} {{ user.username }}! {% else %} visitante! {% endif %}</p>
 </div>
 {% endblock %}
