@@ -26,3 +26,6 @@ Texley é uma ferramenta para apoiar o feedback em disciplinas de programação 
 4. Instalação das dependências: `pip install -r requirements.txt`.
 5. Migração dos modelos: `python3 manage.py migrate`.
 6. Execução: `python3 manage.py runserver`.
+
+## :page_facing_up: Licença
+Este projeto está sob a [licença MIT](LICENSE).
